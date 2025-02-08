@@ -1,22 +1,28 @@
 # README
+> [UvicornAppHostingExtension]
+> Uvicorn for FastAPI with Opentelemetry does not work : err message is No such option: --traces_exporter\
+> Discussion in [https://github.com/CommunityToolkit/Aspire/discussions/457](https://github.com/CommunityToolkit/Aspire/discussions/457)\
 
-## environments
-
-- What I want to do : 
-  - Applying opentelemetry to Uvicorn/FastAPI, 
-  - and see structured Logs in Aspire Dashboard
-
-- Symptoms
-  - In Aspire Dashboard Console prints Error
+Hello~ I tried using the community extension to host a Uvicorn app with Aspire.AppHost.
+  
+However, I ran into the following issue. Does anyone know how to resolve it?\
+I'm still getting used to both Python and .NET, and I feel lost while trying to figure this out.
+  
+## **What I want to do** : 
+- Applying opentelemetry to Uvicorn/FastAPI, 
+- and see structured Logs in Aspire Dashboard
+  
+## **Symptoms** :
+- In Aspire Dashboard Console prints Error
 ```
 2025-02-08T15:34:51 Usage: uvicorn [OPTIONS] APP
 2025-02-08T15:34:51 Try 'uvicorn --help' for help.
 2025-02-08T15:34:51
 2025-02-08T15:34:51 Error: No such option: --traces_exporter
 ```
-  - When .venv has `opentelemetry-instrument`
-  - `UvicornAppHostingExtension.cs` add following arguments automatically
-  - However, `uvicorn` does not support those options
+- When .venv has `opentelemetry-instrument`
+- `UvicornAppHostingExtension.cs` add following arguments automatically
+- However, `uvicorn` does not support those options
 ```
 private static void AddOpenTelemetryArguments(CommandLineArgsCallbackContext context)
 {
@@ -30,14 +36,17 @@ private static void AddOpenTelemetryArguments(CommandLineArgsCallbackContext con
     context.Args.Add("otlp");
 }
 ```
+  
+## How to represent :
+- Environments : python 3.12, dotnet 9, mac M1
 
-## Getting Started
-- Environments
-  - python 3.12
-  - dotnet 9
-  - mac M1
+- Clone repository
+``
+git clone https://github.com/tae0y/aspire-apphost-uvicorn-issue
+cd aspire-apphost-uvicorn-issue
+``
 
-- Python virtual environments setting
+- Set Python virtual environments
 ```
 cd src/Python.FastAPI
 python3.12 -m venv .venv
