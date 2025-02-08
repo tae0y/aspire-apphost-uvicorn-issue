@@ -41,10 +41,10 @@ private static void AddOpenTelemetryArguments(CommandLineArgsCallbackContext con
 - Environments : python 3.12, dotnet 9, mac M1
 
 - Clone repository
-``
+```
 git clone https://github.com/tae0y/aspire-apphost-uvicorn-issue
 cd aspire-apphost-uvicorn-issue
-``
+```
 
 - Set Python virtual environments
 ```
